@@ -1,0 +1,109 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Evita deploys paralelos. cancel-in-progress=false garante que um deploy em
+# andamento termina antes do próximo começar.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  # ────────────────────────────────────────────────────────────────────────
+  # CI — type-check + biome. Se falhar, deploy não roda.
+  # ────────────────────────────────────────────────────────────────────────
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - run: npm ci --no-audit --no-fund
+      - run: npm run type-check
+      - run: npm run biome
+
+  # ────────────────────────────────────────────────────────────────────────
+  # Deploy — SSH no VPS, git pull, build, restart PM2.
+  #
+  # IMPORTANTE: variáveis sensíveis em runtime (SHOPEE_PARTNER_KEY,
+  # MELI_REFRESH_TOKEN, CRON_SECRET, etc.) NÃO são passadas via CI —
+  # vivem no `.env` do projeto no servidor (gitignored). Tokens OAuth
+  # rotativos ficam em /var/lib/mimoskorea-shop/tokens.json. O CI só
+  # precisa do que é build-time: NEXT_PUBLIC_BASE_PATH.
+  # ────────────────────────────────────────────────────────────────────────
+  deploy:
+    needs: ci
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: SSH e deploy
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT || 22 }}
+          timeout: 60s
+          command_timeout: 15m
+          envs: GIT_USER_NAME,GIT_TOKEN
+          script: |
+            set -euo pipefail
+
+            APP_DIR="/home/fjallstoppur/mimoskorea-shop"
+            REPO_URL="https://${GIT_USER_NAME}:${GIT_TOKEN}@github.com/davccavalcante/mimoskorea-shop.git"
+
+            mkdir -p "$APP_DIR"
+            cd "$APP_DIR"
+
+            # Bootstrap idempotente: se .git ainda não existe (dir foi criado
+            # manualmente com .env etc), inicializa em vez de clonar — assim
+            # arquivos não-tracked como .env e tokens.json são preservados.
+            if [ ! -d ".git" ]; then
+              echo "→ Inicializando repo no dir existente"
+              git init -b main
+              git remote add origin "$REPO_URL"
+            fi
+
+            git remote set-url origin "$REPO_URL"
+
+            echo "→ Pull main"
+            git fetch origin main
+            git checkout -B main origin/main
+
+            echo "→ npm ci"
+            npm ci --no-audit --no-fund
+
+            echo "→ Build com basePath /shop"
+            export NEXT_PUBLIC_BASE_PATH=/shop
+            npm run build
+
+            echo "→ Restart PM2"
+            pm2 restart mimoskorea-shop \
+              || pm2 start npm --name mimoskorea-shop -- start
+            pm2 save
+
+            echo "→ Aguardando 5s pra inicializar"
+            sleep 5
+
+            echo "→ Smoke test 1/2: Node direto (porta 3002)"
+            curl -fsS -o /dev/null -w "  Node: HTTP %{http_code}\n" \
+              http://localhost:3002/shop/ \
+              || (pm2 logs mimoskorea-shop --lines 50 --nostream; exit 1)
+
+            echo "→ Smoke test 2/2: via Nginx (rota completa /shop)"
+            curl -fsS -o /dev/null -w "  Nginx: HTTP %{http_code}\n" \
+              -H "Host: mimoskorea.com.br" \
+              http://localhost/shop/ \
+              || echo "  AVISO: teste via Nginx falhou (rota /shop não configurada no nginx.conf do servidor?). Não bloqueante."
+
+            echo "✓ Deploy concluído"
+        env:
+          GIT_USER_NAME: ${{ secrets.GIT_USER_NAME }}
+          GIT_TOKEN: ${{ secrets.GIT_TOKEN }}

@@ -1,0 +1,84 @@
+{
+  "name": "mimoskorea-shop",
+  "description": "Mimos Korea Shop is a web page that show all the products available for sale in Amazon, Shopee, and Mercado Livre.",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "license": "Apache-2.0",
+  "author": {
+    "name": "David C Cavalcante",
+    "email": "davcavalcante@proton.me",
+    "organization": "Takk Innovate Studio",
+    "url": "https://linkedin.com/in/hellodav"
+  },
+  "contributors": [
+    {
+      "name": "Takk Innovate Studio",
+      "email": "say@takk.ag",
+      "url": "https://takk.ag"
+    },
+    {
+      "name": "Fjallstoppur",
+      "email": "fjallstoppur@proton.me",
+      "url": "https://github.com/fjallstoppur"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davccavalcante/mimoskorea-shop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davccavalcante/mimoskorea-shop/issues"
+  },
+  "homepage": "https://github.com/davccavalcante/mimoskorea-shop#readme",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/davccavalcante"
+  },
+  "keywords": [
+    "david-c-cavalcante",
+    "davidccavalcante",
+    "davccavalcante",
+    "davcavalcante",
+    "fjallstoppur",
+    "takk-innovate-studio",
+    "takk8-ag",
+    "takk8is",
+    "mimos-korea-design",
+    "mimoskorea",
+    "mimoskorea-shop",
+    "shop"
+  ],
+  "engines": {
+    "node": ">=20.x",
+    "npm": ">=10.x"
+  },
+  "scripts": {
+    "dev": "next dev --turbopack -p 3002",
+    "build": "next build --turbopack",
+    "start": "next start -p 3002",
+    "biome": "biome check",
+    "biome:fix": "biome check --fix",
+    "type-check": "tsc --noEmit",
+    "format": "biome format --write"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@sentry/nextjs": "^10.52.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@vercel/analytics": "^2.0.1",
+    "framer-motion": "^12.38.0",
+    "next": "^16.2.6",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "swr": "^2.4.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.15",
+    "@types/node": "^25.7.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.0",
+    "typescript": "^6.0.3"
+  }
+}

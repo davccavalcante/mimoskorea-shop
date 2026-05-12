@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  /* Tema único — fundo branco, texto preto, estilo wireframe */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --border: oklch(0.9 0 0);
+  --ring: oklch(0 0 0);
+  --radius: 0rem;
+  --radius-pill: 20px;
+
+  /* Tokens tipográficos */
+  --font-size-title: 1.5rem;
+  /* 24px */
+  --font-size-body: 1rem;
+  /* 16px */
+
+  /* Tokens de marca e marketplace (espelhados em lib/brand.ts) */
+  --brand: #169485;
+  --page-canvas: #bac2f9;
+  --cta: #ffc313;
+  --cta-foreground: oklch(0 0 0);
+  --shopee: #ee4d2d;
+  --shopee-foreground: oklch(1 0 0);
+  --mercadolivre: #ffe600;
+  --mercadolivre-foreground: oklch(0 0 0);
+  --amazon: #ff9900;
+  --amazon-foreground: oklch(0 0 0);
+  --card-content: #f7f5f9;
+}
+
+@theme inline {
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --radius-pill: var(--radius-pill);
+
+  /* Marca + marketplace */
+  --color-brand: var(--brand);
+  --color-page-canvas: var(--page-canvas);
+  --color-cta: var(--cta);
+  --color-cta-foreground: var(--cta-foreground);
+  --color-shopee: var(--shopee);
+  --color-shopee-foreground: var(--shopee-foreground);
+  --color-mercadolivre: var(--mercadolivre);
+  --color-mercadolivre-foreground: var(--mercadolivre-foreground);
+  --color-amazon: var(--amazon);
+  --color-amazon-foreground: var(--amazon-foreground);
+  --color-card-content: var(--card-content);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    /* Remove sombras globais por padrão (estilo wireframe) */
+    box-shadow: none !important;
+  }
+
+  html {
+    @apply bg-background;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: var(--font-size-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
