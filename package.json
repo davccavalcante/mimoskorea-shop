@@ -1,6 +1,6 @@
 {
     "name": "mimoskorea-shop",
-    "description": "Unified catalog of Mimos Korea Design products sold on Shopee, Amazon Brazil, and Mercado Livre.",
+    "description": "Mimos Korea Shop is a web page that show all the products available for sale in Amazon, Shopee, and Mercado Livre.",
     "version": "1.0.0",
     "private": true,
     "type": "module",
