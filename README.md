@@ -1,11 +1,11 @@
 # Mimos Korea Shop
 
 ![Status](https://img.shields.io/badge/status-active-black)
-![Version](https://img.shields.io/badge/version-1.0.0-black)
+![Version](https://img.shields.io/badge/version-1.0.1-black)
 ![License](https://img.shields.io/badge/license-Apache--2.0-black)
-![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
-![TypeScript](https://img.shields.io/badge/TypeScript-strict-black?logo=typescript)
-![Biome](https://img.shields.io/badge/Biome-checked-black?logo=biome)
+![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-black?logo=typescript)
+![Biome](https://img.shields.io/badge/Biome-2.4.15-black?logo=biome)
 ![Node](https://img.shields.io/badge/node-%3E%3D22.x-black)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)](https://www.star-history.com/#davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)
@@ -140,7 +140,7 @@ sequenceDiagram
         A->>M: upsertProducts(mercadolivre)
     end
     A->>U: SSR HTML with first 18 items (round-robin per marketplace)
-    Note over U: SWR client takes over; infinite scroll<br/>fetches /api/products?page=N
+    Note over U: SWR client takes over&#59; infinite scroll<br/>fetches /api/products?page=N
 ```
 
 Subsequent requests within the 10-minute sync window skip the live sync and serve straight from memory.

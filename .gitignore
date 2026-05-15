@@ -203,6 +203,10 @@ debug.log
 .temp/
 .tmp/
 
+## Runtime token storage (OAuth tokens rotativos — nunca commitar)
+tokens.json
+tokens.json.tmp
+
 ## David C Cavalcante and Takk Innovate Studio
 *.takk
 *.davidccavalcante

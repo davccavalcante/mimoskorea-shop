@@ -68,8 +68,8 @@ export function ProductGrid({ initialData, pageSize = 18 }: ProductGridProps) {
 
   if (items.length === 0 && !isValidating) {
     return (
-      <div className="flex min-h-[320px] items-center justify-center border border-border bg-background">
-        <p className="text-[16px] text-muted-foreground">
+      <div className="flex min-h-[20rem] items-center justify-center border border-border bg-background">
+        <p className="text-[1rem] text-muted-foreground">
           Nenhum produto disponível no momento.
         </p>
       </div>
@@ -78,7 +78,7 @@ export function ProductGrid({ initialData, pageSize = 18 }: ProductGridProps) {
 
   return (
     <div className="flex flex-col gap-10">
-      <div className="grid grid-cols-1 gap-x-5 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+      <div className="grid grid-cols-2 gap-x-3 gap-y-6 sm:gap-x-5 sm:gap-y-8 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
         {items.map((product, index) => (
           <ProductCard
             key={product.id}
@@ -103,7 +103,7 @@ export function ProductGrid({ initialData, pageSize = 18 }: ProductGridProps) {
           <button
             type="button"
             onClick={() => setSize(size)}
-            className="rounded-pill border border-border px-4 py-2 text-[14px] font-medium text-foreground transition-colors hover:bg-muted"
+            className="rounded-pill border border-border px-4 py-2 text-[0.875rem] font-medium text-foreground transition-colors hover:bg-muted"
           >
             Tentar novamente
           </button>

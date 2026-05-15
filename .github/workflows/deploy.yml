@@ -75,7 +75,11 @@ jobs:
 
             echo "→ Pull main"
             git fetch origin main
-            git checkout -B main origin/main
+            # reset --hard em vez de checkout -B: descarta qualquer mudança
+            # local em arquivos tracked (ex: tokens.json se tiver sido
+            # commitado por engano no passado) sem tocar em untracked
+            # (.env, tokens.json gerado em runtime, etc.).
+            git reset --hard origin/main
 
             echo "→ npm ci"
             npm ci --no-audit --no-fund

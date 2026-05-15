@@ -51,15 +51,15 @@ export default async function HomePage() {
         <section>
           <div className="mx-auto w-full max-w-[1600px] px-4 py-10 md:px-8 md:py-14">
             <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 text-center">
-              <h1 className="text-[42px] font-black leading-tight text-black text-balance">
+              <h1 className="text-[2.625rem] font-black leading-tight text-black text-balance">
                 Ofertas Mimos Korea Design na Shopee, Amazon, e Mercado Livre
               </h1>
-              <p className="text-[20px] font-medium text-black text-pretty">
+              <p className="text-[1.25rem] font-medium text-black text-pretty">
                 Seleção oficial de produtos coreanos disponíveis nas lojas Mimos
                 Korea Design em Amazon Brasil, Shopee e Mercado Livre. Clique em
                 qualquer item para comprar no marketplace de origem.
               </p>
-              <span className="inline-flex items-center rounded-pill bg-white px-3 py-1 text-[13px] font-semibold text-black">
+              <span className="inline-flex items-center rounded-pill bg-white px-3 py-1 text-[0.8125rem] font-semibold text-black">
                 {initialData.total} produtos no catálogo
               </span>
             </div>

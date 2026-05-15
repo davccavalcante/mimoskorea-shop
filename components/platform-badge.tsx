@@ -15,7 +15,7 @@ const styles: Record<Marketplace, string> = {
 export function PlatformBadge({ marketplace }: PlatformBadgeProps) {
   return (
     <span
-      className={`inline-flex items-center rounded-pill px-3 py-1 text-[11px] font-semibold uppercase tracking-wider ${styles[marketplace]}`}
+      className={`inline-flex items-center rounded-pill px-3 py-1 text-[0.6875rem] font-semibold uppercase tracking-wider ${styles[marketplace]}`}
     >
       {marketplaceLabels[marketplace]}
     </span>

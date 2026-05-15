@@ -26,7 +26,7 @@ const MARKETPLACE_PILLS = [
 export function PromoStrip({ productCount }: PromoStripProps) {
   return (
     <div className="w-full bg-black px-4 py-2 md:px-8">
-      <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[12px] font-bold uppercase tracking-[0.18em] text-white">
+      <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-[0.75rem] font-bold uppercase tracking-[0.18em] text-white">
         <span>Oficial</span>
         <span aria-hidden="true" className="text-white/40">
           ·
@@ -41,7 +41,7 @@ export function PromoStrip({ productCount }: PromoStripProps) {
           {MARKETPLACE_PILLS.map((pill) => (
             <li key={pill.label}>
               <span
-                className={`inline-flex items-center rounded-pill px-2 py-0.5 text-[10px] font-bold tracking-[0.12em] ${pill.className}`}
+                className={`inline-flex items-center rounded-pill px-2 py-0.5 text-[0.625rem] font-bold tracking-[0.12em] ${pill.className}`}
               >
                 {pill.label}
               </span>
