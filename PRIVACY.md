@@ -1,132 +1,132 @@
-# Privacy Policy
+# Política de Privacidade
 
-Last update: 2026
+Última atualização: 2026
 
-## Introduction
+## Introdução
 
-This Privacy Policy describes how your personal information is collected, used, and shared when you visit or interact with our project.
+Esta Política de Privacidade descreve como suas informações pessoais são coletadas, utilizadas e compartilhadas quando você visita ou interage com nosso projeto.
 
-## Information We Collect
+## Informações que Coletamos
 
-### Personal Information
+### Informações Pessoais
 
-We may collect personal information that you directly provide to us, including but not limited to:
+Podemos coletar informações pessoais que você nos fornece diretamente, incluindo, mas não se limitando a:
 
-- Name
-- Email address
-- Contact information
-- Any other information you choose to provide
+- Nome
+- Endereço de e-mail
+- Informações de contato
+- Quaisquer outras informações que você opte por fornecer
 
-### Log Data and Analytics
+### Dados de Log e Analytics
 
-When you visit our project, we may automatically collect certain information, including:
+Quando você visita nosso projeto, podemos coletar automaticamente certas informações, incluindo:
 
-- Browser type
-- Operating system
-- IP address
-- Usage patterns and statistics
-- Technical details
+- Tipo de navegador
+- Sistema operacional
+- Endereço IP
+- Padrões e estatísticas de uso
+- Detalhes técnicos
 
-## How We Use Information
+## Como Utilizamos as Informações
 
-We use the collected information to:
+Utilizamos as informações coletadas para:
 
-- Provide, maintain and improve our project
-- Respond to comments and questions
-- Send updates and communications
-- Monitor usage metrics
-- Protect against misuse
+- Fornecer, manter e melhorar nosso projeto
+- Responder a comentários e perguntas
+- Enviar atualizações e comunicações
+- Monitorar métricas de uso
+- Proteger contra uso indevido
 
-## Information Sharing
+## Compartilhamento de Informações
 
-We do not sell or rent your personal information to third parties. We may share information in the following situations:
+Não vendemos nem alugamos suas informações pessoais a terceiros. Podemos compartilhar informações nas seguintes situações:
 
-- With your consent
-- For legal compliance
-- To protect rights and safety
-- With service providers under confidentiality agreements
+- Com o seu consentimento
+- Para cumprimento de obrigações legais
+- Para proteger direitos e segurança
+- Com prestadores de serviço sob acordos de confidencialidade
 
-## Data Security
+## Segurança dos Dados
 
-We implement appropriate technical and organizational security measures to protect your information.
+Implementamos medidas técnicas e organizacionais de segurança apropriadas para proteger suas informações.
 
-## Your Rights
+## Seus Direitos
 
-You may have rights regarding your personal data, including:
+Você pode ter direitos relativos aos seus dados pessoais, incluindo:
 
-- Accessing your data
-- Updating or correcting data
-- Requesting deletion
-- Restricting processing
-- Data portability
+- Acessar seus dados
+- Atualizar ou corrigir dados
+- Solicitar exclusão
+- Restringir o tratamento
+- Portabilidade de dados
 
-## Changes to this Policy
+## Alterações nesta Política
 
-We may periodically update this Privacy Policy. We will notify you of any changes by posting the new policy on this page.
+Podemos atualizar esta Política de Privacidade periodicamente. Notificaremos você sobre quaisquer alterações publicando a nova política nesta página.
 
-## Contact
+## Contato
 
-If you have questions about this Privacy Policy, please contact:
+Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato:
 
 David C Cavalcante
 LinkedIn: https://linkedin.com/in/hellodav
 
 ## Takk™ Innovate Studio
 
-This project is maintained by Takk™ Innovate Studio. For more information about our terms and licensing, visit [our website](https://takk.ag).
+Este projeto é mantido pela Takk™ Innovate Studio. Para mais informações sobre nossos termos e licenciamento, visite [nosso site](https://takk.ag).
 
-## Contributor License and Feedback Agreement for Takk™ Innovate Studio
+## Acordo de Licença e Feedback do Colaborador para a Takk™ Innovate Studio
 
-Welcome to our Contributor License and Feedback Agreement! Here's a quick summary:
+Bem-vindo ao nosso Acordo de Licença e Feedback do Colaborador! Aqui vai um resumo rápido:
 
-- You (the contributor) are establishing an agreement with Takk™ Innovate Studio.
-- You are giving Takk™ permission to use and share your contributions (such as original works or modifications).
-- You ensure that the contributions are truly yours and that you have the legal right to share them.
-- You are not required to provide support for your contributions, but are welcome to do so if you wish.
-- If you notice any errors or changes in the provided details, you agree to inform us.
+- Você (o colaborador) está firmando um acordo com a Takk™ Innovate Studio.
+- Você está concedendo à Takk™ permissão para usar e compartilhar suas contribuições (como obras originais ou modificações).
+- Você garante que as contribuições são genuinamente suas e que você tem o direito legal de compartilhá-las.
+- Você não é obrigado a prestar suporte às suas contribuições, mas é bem-vindo a fazê-lo, caso queira.
+- Caso identifique qualquer erro ou mudança nos detalhes fornecidos, você concorda em nos informar.
 
-In summary, this agreement covers the terms for your valuable contributions to Takk™ projects.
+Em resumo, este acordo cobre os termos para as suas valiosas contribuições aos projetos da Takk™.
 
-### Legally Binding Section
+### Seção Juridicamente Vinculante
 
-By submitting a Contribution, use of the Solution, or any related components (as defined in the Takk™ End User License Agreement located [here](https://takk.ag)), you accept and agree to the terms and conditions set forth in this Contributor License and Feedback Agreement (the "Agreement") for your present and future Contributions submitted to Takk™ Innovate Studio ("Company").
+Ao submeter uma Contribuição, utilizar a Solução, ou quaisquer componentes relacionados (conforme definido no Contrato de Licença de Usuário Final da Takk™ disponível [aqui](https://takk.ag)), você aceita e concorda com os termos e condições estabelecidos neste Acordo de Licença e Feedback do Colaborador (o "Acordo") para suas Contribuições presentes e futuras submetidas à Takk™ Innovate Studio ("Empresa").
 
-### Definitions
+### Definições
 
-"Contributor", "You" and "Your" means the copyright owner or legal entity authorized by the copyright owner that is making this Agreement with the Company. For legal entities, the entity making a Contribution and all other entities that control, are controlled by, or are under common control with that entity are considered a single Contributor.
+"Colaborador", "Você" e "Seu" significam o detentor dos direitos autorais ou a entidade legal autorizada pelo detentor dos direitos autorais que está firmando este Acordo com a Empresa. Para entidades legais, a entidade que faz uma Contribuição e todas as demais entidades que controlam, são controladas por, ou estão sob controle comum com essa entidade são consideradas um único Colaborador.
 
-"Contribution" means any original work of authorship, including any modifications or additions to an existing work, that is intentionally submitted by You to the Company for inclusion in, or documentation of, any of the products owned or managed by the Company.
+"Contribuição" significa qualquer obra original de autoria, incluindo quaisquer modificações ou adições a uma obra existente, que seja intencionalmente submetida por Você à Empresa para inclusão em, ou documentação de, qualquer um dos produtos detidos ou gerenciados pela Empresa.
 
-"Feedback" means suggestions, comments, improvements, software code/snippets, or other information submitted to Takk™.
+"Feedback" significa sugestões, comentários, melhorias, trechos/código de software ou outras informações submetidas à Takk™.
 
-### Copyright License Grant
+### Concessão de Licença de Direitos Autorais
 
-Subject to the terms and conditions of this Agreement, You grant to the Company and to recipients of software distributed by the Company a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable license to reproduce, prepare derivative works of, publicly display, publicly perform, sublicense, and distribute Your Contributions and such derivative works.
+Sujeito aos termos e condições deste Acordo, Você concede à Empresa e aos destinatários do software distribuído pela Empresa uma licença perpétua, mundial, não exclusiva, sem custos, livre de royalties e irrevogável para reproduzir, preparar obras derivadas de, exibir publicamente, executar publicamente, sublicenciar e distribuir Suas Contribuições e tais obras derivadas.
 
-### Patent License Grant
+### Concessão de Licença de Patente
 
-You grant to the Company and to recipients of software distributed by the Company a perpetual, worldwide, non-exclusive, no-charge, royalty-free, irrevocable patent license to make, use, offer to sell, sell, import, and otherwise transfer the Work.
+Você concede à Empresa e aos destinatários do software distribuído pela Empresa uma licença de patente perpétua, mundial, não exclusiva, sem custos, livre de royalties e irrevogável para fabricar, usar, oferecer para venda, vender, importar e de outra forma transferir a Obra.
 
-### Representations
+### Declarações
 
-You represent that You have the legal right to grant the above licenses. If your employer has rights to intellectual property that you create, You represent that you have received permission to make Contributions on behalf of that employer.
+Você declara que tem o direito legal de conceder as licenças acima. Se seu empregador detém direitos sobre propriedade intelectual que você cria, Você declara que recebeu permissão para fazer Contribuições em nome desse empregador.
 
-### Disclaimer
+### Isenção de Garantias
 
-Unless required by applicable law or agreed to in writing, You provide your Contributions "AS IS", WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+A menos que exigido pela legislação aplicável ou acordado por escrito, Você fornece suas Contribuições "NO ESTADO EM QUE SE ENCONTRAM", SEM GARANTIAS OU CONDIÇÕES DE QUALQUER TIPO, expressas ou implícitas.
 
-### Support
+### Suporte
 
-You are not expected to provide support for Your Contributions, except to the extent You desire to do so. You may provide support for free, for a fee, or not at all.
+Não se espera que Você forneça suporte às Suas Contribuições, exceto na medida em que Você deseje fazê-lo. Você pode fornecer suporte gratuitamente, mediante pagamento, ou não fornecer.
 
-## Sign to Accept CLA
+## Assine para Aceitar o CLA
 
-[Sign in with GitHub](https://github.com/login) to accept the CLA.
+[Faça login com GitHub](https://github.com/login) para aceitar o CLA.
 
 ---
 
-For the complete agreement, visit [our website](https://takk.ag).
+Para o acordo completo, visite [nosso site](https://takk.ag).
 
-## Applicable Law
+## Lei Aplicável
 
-This Privacy Policy is governed by and construed in accordance with applicable laws
+Esta Política de Privacidade é regida e interpretada de acordo com as leis aplicáveis

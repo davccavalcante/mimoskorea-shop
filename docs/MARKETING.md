@@ -511,7 +511,7 @@ Os itens técnicos abaixo são copiados em `docs/TASK.md` Grupo 11 (já existe) 
 
 ---
 
-## Sources
+## Fontes
 
 - [K-Tudo: como a Coreia já molda o consumo no Brasil — Mercado&Consumo](https://mercadoeconsumo.com.br/17/04/2026/artigos/k-tudo-como-a-coreia-ja-molda-o-consumo-no-brasil/)
 - [Produtos coreanos: tendências no Mercado Livre em 2025 — Nubimetrics](https://academia.nubimetrics.com/br/produtos-coreanos)

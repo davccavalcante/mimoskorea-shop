@@ -27,7 +27,7 @@ export function ProductCard({
         delay: Math.min(index * 0.015, 0.15),
         ease: "easeOut",
       }}
-      className="product-card-shell flex flex-col overflow-hidden rounded-pill bg-background"
+      className="flex flex-col overflow-hidden rounded-pill bg-background"
     >
       {/* Imagem */}
       <Link
@@ -44,6 +44,12 @@ export function ProductCard({
           sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1024px) 33vw, (max-width: 1280px) 25vw, 16vw"
           loading={priority ? "eager" : "lazy"}
           priority={priority}
+          // Marketplace CDNs (Shopee/ML/Amazon) já servem imagens otimizadas.
+          // Reproxar via next/image causa timeout sob estampida (180 cards no
+          // scroll infinito disparando transcode simultâneo via sharp). Servir
+          // direto do CDN é mais robusto — perde AVIF/WebP server-side mas
+          // ganha latência e zero erros 500.
+          unoptimized
           className="object-contain"
         />
         <div className="absolute left-2 top-2">

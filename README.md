@@ -1,48 +1,48 @@
 # Mimos Korea Shop
 
 ![Status](https://img.shields.io/badge/status-active-black)
-![Version](https://img.shields.io/badge/version-1.0.1-black)
-![License](https://img.shields.io/badge/license-Apache--2.0-black)
+![Versão](https://img.shields.io/badge/version-1.0.2-black)
+![Licença](https://img.shields.io/badge/license-Apache--2.0-black)
 ![Next.js](https://img.shields.io/badge/Next.js-16.2.6-black?logo=next.js)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-black?logo=typescript)
 ![Biome](https://img.shields.io/badge/Biome-2.4.15-black?logo=biome)
 ![Node](https://img.shields.io/badge/node-%3E%3D22.x-black)
 
-[![Star History Chart](https://api.star-history.com/svg?repos=davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)](https://www.star-history.com/#davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)
+[![Gráfico do Histórico de Stars](https://api.star-history.com/svg?repos=davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)](https://www.star-history.com/#davccavalcante/mimoskorea-shop&type=timeline&legend=top-left)
 
-Official unified catalog of **Mimos Korea Design** products sold on **Shopee**, **Amazon Brasil**, and **Mercado Livre**. Read-only storefront: each product links directly to the marketplace of origin — no checkout, no cart, no customer data on this site.
+Catálogo oficial unificado dos produtos da **Mimos Korea Design** vendidos na **Shopee**, **Amazon Brasil** e **Mercado Livre**. Vitrine somente leitura: cada produto leva direto ao marketplace de origem — sem checkout, sem carrinho, sem dados de cliente neste site.
 
-⭐ If this project helped you, please star the repository at [github.com/davccavalcante/mimoskorea-shop](https://github.com/davccavalcante/mimoskorea-shop).
+⭐ Se este projeto te ajudou, dê uma estrela no repositório em [github.com/davccavalcante/mimoskorea-shop](https://github.com/davccavalcante/mimoskorea-shop).
 
-## Tech Stack
+## Stack Técnica
 
 - **Next.js 16** (App Router, Turbopack, React Server Components)
-- **TypeScript** in strict mode
-- **Tailwind CSS v4** with semantic design tokens
+- **TypeScript** em modo strict
+- **Tailwind CSS v4** com tokens semânticos de design
 - **Figtree** (Google Fonts)
-- **Biome** (linting + formatting)
-- **Framer Motion** (subtle animations, respects `prefers-reduced-motion`)
-- **SWR** (client-side infinite scroll)
-- **No database** — OAuth tokens persisted to a file on disk
+- **Biome** (lint + formatação)
+- **Framer Motion** (animações sutis, respeitando `prefers-reduced-motion`)
+- **SWR** (scroll infinito no cliente)
+- **Sem banco de dados** — tokens OAuth persistidos em arquivo no disco
 
-## Architecture
+## Arquitetura
 
 ```mermaid
 graph LR
-    subgraph "Client"
-        BR[Browser<br/>SSR + SWR]
+    subgraph "Cliente"
+        BR[Navegador<br/>SSR + SWR]
     end
     subgraph "VPS · Debian 12"
         NX["Nginx<br/>(443 → /shop)"]
-        APP["Next.js 16<br/>(PM2, port 3002)"]
-        MEM["Memory Store<br/>products + token cache"]
+        APP["Next.js 16<br/>(PM2, porta 3002)"]
+        MEM["Store em Memória<br/>produtos + cache de tokens"]
         TF[("tokens.json<br/>/var/lib/mimoskorea-shop")]
-        SS[("shopee.json<br/>snapshot fallback")]
+        SS[("shopee.json<br/>snapshot de fallback")]
     end
     subgraph "Marketplaces"
         SHO["Shopee Open<br/>Platform v2"]
         ML["Mercado Livre<br/>API"]
-        AM["Amazon Storefront<br/>(link only)"]
+        AM["Storefront Amazon<br/>(apenas link)"]
     end
 
     BR -- "https" --> NX
@@ -52,194 +52,194 @@ graph LR
     APP --> SS
     APP -- "OAuth + sync" --> SHO
     APP -- "OAuth + sync" --> ML
-    BR -. "click 'Eu quero'" .-> SHO
-    BR -. "click 'Eu quero'" .-> ML
-    BR -. "click 'Eu quero'" .-> AM
+    BR -. "clique em 'Eu quero'" .-> SHO
+    BR -. "clique em 'Eu quero'" .-> ML
+    BR -. "clique em 'Eu quero'" .-> AM
 ```
 
-**Key principles:**
+**Princípios-chave:**
 
-- **Read-only catalog.** The app never writes to marketplaces; it only reads product listings.
-- **No external database.** Source of truth for tokens is a single JSON file on disk; product data lives in process memory, rehydrated on cold start from a committed snapshot + live sync.
-- **Snapshot as safety net.** [`lib/snapshots/shopee.json`](lib/snapshots/shopee.json) is committed and seeds memory before any API call, so the catalog stays populated even if Shopee is down or tokens are revoked.
-- **One outbound link per card.** Each product CTA opens the marketplace of origin in a new tab; we never proxy or replay the marketplace listing.
+- **Catálogo somente leitura.** O app nunca escreve nos marketplaces; apenas lê os anúncios de produtos.
+- **Sem banco de dados externo.** A fonte da verdade para tokens é um único arquivo JSON em disco; os dados de produto vivem na memória do processo, re-hidratados em cold start a partir de um snapshot commitado + sync ao vivo.
+- **Snapshot como rede de segurança.** [`lib/snapshots/shopee.json`](lib/snapshots/shopee.json) é commitado e popula a memória antes de qualquer chamada de API, então o catálogo permanece preenchido mesmo se a Shopee estiver fora do ar ou os tokens forem revogados.
+- **Um link de saída por card.** Cada CTA de produto abre o marketplace de origem em uma nova aba; nunca proxiamos nem reproduzimos o anúncio do marketplace.
 
-## Project Structure
+## Estrutura do Projeto
 
 ```
 mimoskorea-shop/
 ├── app/                              Next.js App Router
 │   ├── api/
-│   │   ├── products/route.ts         Public paginated catalog API
+│   │   ├── products/route.ts         API pública paginada do catálogo
 │   │   ├── cron/{sync-shopee,sync-meli}/route.ts
 │   │   ├── shopee/oauth/{start,callback}/route.ts
 │   │   └── mercadolivre/oauth/{start,callback}/route.ts
-│   ├── icon.tsx                      32x32 favicon (next/og)
+│   ├── icon.tsx                      favicon 32x32 (next/og)
 │   ├── apple-icon.tsx                180x180 (next/og)
-│   ├── opengraph-image.tsx           1200x630 social preview
+│   ├── opengraph-image.tsx           preview social 1200x630
 │   ├── robots.ts · sitemap.ts · llms.txt/route.ts
-│   ├── globals.css                   Tailwind v4 tokens
+│   ├── globals.css                   tokens Tailwind v4
 │   ├── layout.tsx · page.tsx
 ├── components/
-│   ├── motion-provider.tsx           prefers-reduced-motion gate
+│   ├── motion-provider.tsx           gate de prefers-reduced-motion
 │   ├── product-card.tsx · product-card-skeleton.tsx
-│   ├── product-grid.tsx              SWR infinite scroll
-│   ├── platform-badge.tsx            Shopee/ML/Amazon pill
-│   ├── price.tsx                     R$ split-cents layout
-│   ├── promo-strip.tsx               top retail-style strip
+│   ├── product-grid.tsx              scroll infinito com SWR
+│   ├── platform-badge.tsx            pill Shopee/ML/Amazon
+│   ├── price.tsx                     layout R$ separando centavos
+│   ├── promo-strip.tsx               faixa superior estilo varejo
 │   └── site-footer.tsx
 ├── lib/
-│   ├── brand.ts                      brand colors mirror (for next/og)
-│   ├── env.ts                        typed env loaders
-│   ├── products.ts                   Product / Marketplace types
-│   ├── cache/memory.ts               in-process store (Map)
+│   ├── brand.ts                      espelho das cores da marca (para next/og)
+│   ├── env.ts                        loaders tipados de env
+│   ├── products.ts                   tipos Product / Marketplace
+│   ├── cache/memory.ts               store em memória do processo (Map)
 │   ├── repo/
 │   │   ├── products.ts               read API + upsert + archive
-│   │   ├── bootstrap.ts              seed snapshot + sync triggers
-│   │   ├── tokens.ts                 memory + disk facade
-│   │   └── tokens-fs.ts              atomic JSON read/write
-│   ├── snapshots/shopee.json         committed product fallback
-│   ├── shopee/                       Open Platform v2 client + sync
-│   └── meli/                         Mercado Livre client + sync
+│   │   ├── bootstrap.ts              seed do snapshot + gatilhos de sync
+│   │   ├── tokens.ts                 fachada memória + disco
+│   │   └── tokens-fs.ts              leitura/escrita atômica de JSON
+│   ├── snapshots/shopee.json         fallback de produtos commitado
+│   ├── shopee/                       cliente Open Platform v2 + sync
+│   └── meli/                         cliente Mercado Livre + sync
 ├── public/logo.svg
-├── deploy/nginx.conf                 production vhost (proxy /shop → :3002)
-└── .github/workflows/deploy.yml      CI/CD pipeline
+├── deploy/nginx.conf                 vhost de produção (proxy /shop → :3002)
+└── .github/workflows/deploy.yml      pipeline de CI/CD
 ```
 
-## Request Flow
+## Fluxo de Requisição
 
-What happens on the **first** request after a server start:
+O que acontece na **primeira** requisição após o servidor iniciar:
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor U as User
+    actor U as Usuário
     participant N as Nginx
-    participant A as Next.js app
-    participant M as Memory
+    participant A as App Next.js
+    participant M as Memória
     participant F as tokens.json
-    participant S as Shopee API
-    participant L as Mercado Livre API
+    participant S as API Shopee
+    participant L as API Mercado Livre
 
     U->>N: GET https://mimoskorea.com.br/shop/
     N->>A: proxy → localhost:3002
     A->>A: getProductsPage(1)
     A->>A: bootstrapIfEmpty()
-    A->>M: seed snapshot (110 products, instant)
-    par async sync per marketplace (10-min window)
-        A->>F: read shopee token
+    A->>M: seed do snapshot (110 produtos, instantâneo)
+    par sync assíncrono por marketplace (janela de 10 min)
+        A->>F: lê token da shopee
         F->>A: { access, refresh, expiresAt }
         A->>S: get_item_list + base_info + model_list
-        S->>A: items (paginated, batched 50)
+        S->>A: itens (paginados, em lotes de 50)
         A->>M: upsertProducts(shopee)
     and
-        A->>F: read meli token
+        A->>F: lê token do meli
         F->>A: { access, refresh }
         A->>L: users/{id}/items/search + items?ids
-        L->>A: items (batched 20)
+        L->>A: itens (em lotes de 20)
         A->>M: upsertProducts(mercadolivre)
     end
-    A->>U: SSR HTML with first 18 items (round-robin per marketplace)
-    Note over U: SWR client takes over&#59; infinite scroll<br/>fetches /api/products?page=N
+    A->>U: HTML em SSR com os primeiros 18 itens (round-robin por marketplace)
+    Note over U: Cliente SWR assume&#59; scroll infinito<br/>busca /api/products?page=N
 ```
 
-Subsequent requests within the 10-minute sync window skip the live sync and serve straight from memory.
+Requisições subsequentes dentro da janela de sync de 10 minutos pulam o sync ao vivo e servem direto da memória.
 
-## Sync & Token Lifecycle
+## Ciclo de Vida do Sync e dos Tokens
 
 ```mermaid
 flowchart TD
-    Start([Cold start / first request]) --> ReadMem{Token in memory?}
-    ReadMem -- yes --> CheckExp{access expires<br/>in <5min?}
-    ReadMem -- no --> ReadFS{tokens.json exists?}
-    ReadFS -- yes --> LoadFS[Load disk token<br/>into memory]
+    Start([Cold start / primeira requisição]) --> ReadMem{Token em memória?}
+    ReadMem -- sim --> CheckExp{access expira<br/>em <5min?}
+    ReadMem -- não --> ReadFS{tokens.json existe?}
+    ReadFS -- sim --> LoadFS[Carrega token do disco<br/>para a memória]
     LoadFS --> CheckExp
-    ReadFS -- no --> EnvBoot[Bootstrap from .env<br/>SHOPEE_REFRESH_TOKEN]
+    ReadFS -- não --> EnvBoot[Bootstrap a partir do .env<br/>SHOPEE_REFRESH_TOKEN]
     EnvBoot --> Refresh
-    CheckExp -- yes --> Refresh[POST auth/access_token/get<br/>rotates refresh + access]
-    CheckExp -- no --> Use[Use current access token]
-    Refresh --> WriteFS[Atomic write<br/>tokens.json.tmp → rename]
+    CheckExp -- sim --> Refresh[POST auth/access_token/get<br/>rotaciona refresh + access]
+    CheckExp -- não --> Use[Usa o access token atual]
+    Refresh --> WriteFS[Escrita atômica<br/>tokens.json.tmp → rename]
     WriteFS --> Use
-    Use --> Call[Call marketplace API]
-    Call --> Done([Return products to caller])
+    Use --> Call[Chama API do marketplace]
+    Call --> Done([Retorna produtos ao chamador])
 ```
 
-**Why a file, not a database:** marketplace refresh tokens rotate on every use. If we kept the seed value only in `.env`, the second cold start would fail because the env's refresh token would already be invalidated. The disk file is the only place that survives both process restarts and token rotation.
+**Por que um arquivo e não um banco:** refresh tokens de marketplace rotacionam a cada uso. Se mantivéssemos o valor de seed apenas em `.env`, o segundo cold start falharia, pois o refresh token do env já estaria invalidado. O arquivo em disco é o único lugar que sobrevive a reinícios de processo e à rotação de tokens.
 
-## Deployment
+## Deploy
 
-Target: **Debian 12 + Nginx + PM2**. CI/CD via GitHub Actions on push to `main`.
+Alvo: **Debian 12 + Nginx + PM2**. CI/CD via GitHub Actions em push na `main`.
 
 ```mermaid
 flowchart LR
-    Dev[Local dev] -- git push main --> GH[GitHub]
-    GH --> CI{CI job<br/>type-check + biome}
-    CI -- pass --> Deploy[Deploy job<br/>SSH + git pull + build + pm2 restart]
-    CI -- fail --> Block[PR blocked]
+    Dev[Dev local] -- git push main --> GH[GitHub]
+    GH --> CI{Job de CI<br/>type-check + biome}
+    CI -- aprovado --> Deploy[Job de deploy<br/>SSH + git pull + build + pm2 restart]
+    CI -- falhou --> Block[PR bloqueado]
     Deploy --> Server[(VPS<br/>82.25.79.245)]
-    Server --> Nginx[Nginx reload not needed<br/>basePath unchanged]
-    Server --> PM2[PM2 hot restart<br/>mimoskorea-shop process]
+    Server --> Nginx[Reload do Nginx não necessário<br/>basePath inalterado]
+    Server --> PM2[Hot restart do PM2<br/>processo mimoskorea-shop]
 ```
 
-Production specifics:
+Especificidades de produção:
 
-- App listens on **`:3002`** (PM2 process named `mimoskorea-shop`); Nginx proxies `https://mimoskorea.com.br/shop/*` → `localhost:3002`
-- Build is done **on the server** with `NEXT_PUBLIC_BASE_PATH=/shop` so all internal URLs (`/_next/*`, `/api/*`, `/sitemap.xml`) get the correct prefix
-- Tokens live at **`/var/lib/mimoskorea-shop/tokens.json`** (outside the deploy directory, survives `git pull`)
-- Two-step health check after restart: `curl localhost:3002/shop/` then `curl -H Host: ... localhost/shop/` to validate Nginx routing without depending on external network
+- App escuta em **`:3002`** (processo PM2 chamado `mimoskorea-shop`); o Nginx faz proxy de `https://mimoskorea.com.br/shop/*` → `localhost:3002`
+- O build é feito **no servidor** com `NEXT_PUBLIC_BASE_PATH=/shop` para que todas as URLs internas (`/_next/*`, `/api/*`, `/sitemap.xml`) recebam o prefixo correto
+- Os tokens ficam em **`/var/lib/mimoskorea-shop/tokens.json`** (fora do diretório de deploy, sobrevive a `git pull`)
+- Health check em duas etapas após o restart: `curl localhost:3002/shop/` e depois `curl -H Host: ... localhost/shop/` para validar o roteamento do Nginx sem depender de rede externa
 
-## Contributing
+## Contribuindo
 
-Pull requests are welcome. Before opening one:
+Pull requests são bem-vindos. Antes de abrir um:
 
-1. **Local setup**
+1. **Setup local**
 
     ```bash
     git clone https://github.com/davccavalcante/mimoskorea-shop.git
     cd mimoskorea-shop
     npm install
-    cp .env.example .env   # if present; otherwise ask the maintainer for the required config
+    cp .env.example .env   # se presente; caso contrário peça ao mantenedor a config necessária
     npm run dev
     ```
 
-    The dev server runs at `http://localhost:3002`.
+    O servidor de dev roda em `http://localhost:3002`.
 
-2. **Required checks before committing**
+2. **Checagens obrigatórias antes de commitar**
 
     ```bash
     npm run type-check
     npm run biome
     ```
 
-    The CI pipeline runs both — PRs are blocked otherwise.
+    O pipeline de CI roda ambas — PRs são bloqueados caso contrário.
 
-3. **Conventions**
+3. **Convenções**
 
-    - Branches: `feature/<short-desc>` or `fix/<short-desc>`
-    - Commits: short imperative, ideally Conventional Commits (e.g. `fix(shopee): handle has_model items`)
-    - One PR per coherent change; description in English or PT-BR; include screenshots for UI changes
-    - No emoji icons (use Phosphor); no decorative shadows; tokenize new colors in `app/globals.css` instead of hardcoding hex
+    - Branches: `feature/<short-desc>` ou `fix/<short-desc>`
+    - Commits: imperativo e curto, idealmente Conventional Commits (ex.: `fix(shopee): handle has_model items`)
+    - Um PR por mudança coerente; descrição em inglês ou pt-BR; inclua screenshots para mudanças de UI
+    - Sem ícones em emoji (use Phosphor); sem sombras decorativas; tokenize cores novas em `app/globals.css` em vez de hardcodar hex
 
-4. **Report a bug / request a feature**: open an issue at [github.com/davccavalcante/mimoskorea-shop/issues](https://github.com/davccavalcante/mimoskorea-shop/issues).
+4. **Reportar bug / pedir feature**: abra uma issue em [github.com/davccavalcante/mimoskorea-shop/issues](https://github.com/davccavalcante/mimoskorea-shop/issues).
 
-## Sponsors
+## Patrocinadores
 
-Join us on our journey as we continue to innovate and create groundbreaking solutions. Your support is the cornerstone of our success!
+Junte-se a nós em nossa jornada enquanto continuamos a inovar e criar soluções pioneiras. Seu apoio é a pedra angular do nosso sucesso!
 
-Support us with USDT (TRC-20): `TS1vuhMAhFpbd7y68cu5ZtP9PsXVmZWmeh`
+Apoie-nos com USDT (TRC-20): `TS1vuhMAhFpbd7y68cu5ZtP9PsXVmZWmeh`
 
-Sponsor this project on GitHub: [Sponsor](https://github.com/sponsors/davccavalcante)
+Patrocine este projeto no GitHub: [Patrocinar](https://github.com/sponsors/davccavalcante)
 
-## License
+## Licença
 
-This project is open source for personal or internal use. MAIC™, HIM™, NHE™ are proprietary and may not be copied, distributed, or used without explicit permission from [David Côrtes Cavalcante](https://linkedin.com/in/hellodav). See LICENSE.txt for the binding terms governing use, copying, and distribution.
+Este projeto é de código aberto para uso pessoal ou interno. MAIC™, HIM™, NHE™ são proprietários e não podem ser copiados, distribuídos ou utilizados sem permissão explícita de [David Côrtes Cavalcante](https://linkedin.com/in/hellodav). Consulte LICENSE.txt para os termos vinculantes que regem o uso, a cópia e a distribuição.
 
-MAIC™ (Massive Artificial Intelligence Consciousness) is a systemic intelligence framework designed to coordinate, supervise, and govern large-scale artificial intelligence ecosystems. It provides global context awareness, alignment, and orchestration across multiple models, agents, and decision layers, ensuring coherence, risk control, and compliance throughout complex AI operations.
+MAIC™ (Massive Artificial Intelligence Consciousness) é um framework de inteligência sistêmica projetado para coordenar, supervisionar e governar ecossistemas de inteligência artificial em larga escala. Ele provê consciência de contexto global, alinhamento e orquestração entre múltiplos modelos, agentes e camadas de decisão, garantindo coerência, controle de risco e conformidade ao longo de operações complexas de IA.
 
-HIM™ (Hybrid Intelligence Model) is a hybrid intelligence layer that integrates artificial intelligence systems with human-defined logic, rules, heuristics, and strategic intent. HIM™ functions as a passive cognitive core, responsible for interpreting objectives, refining intent, and structuring decision-making processes before and after AI model execution.
+HIM™ (Hybrid Intelligence Model) é uma camada de inteligência híbrida que integra sistemas de inteligência artificial com lógica, regras, heurísticas e intenção estratégica definidas por humanos. O HIM™ funciona como núcleo cognitivo passivo, responsável por interpretar objetivos, refinar intenção e estruturar processos de tomada de decisão antes e depois da execução do modelo de IA.
 
-NHE™ (Non-Human Entity) refers to a non-human cognitive entity with a defined functional identity and operational agency within an AI ecosystem. An NHE™ is not classified as artificial intelligence in isolation, but as an autonomous or semi-autonomous entity that operates through coordinated intelligence layers, interacting with systems, users, and environments while maintaining a non-anthropomorphic identity.
+NHE™ (Non-Human Entity) refere-se a uma entidade cognitiva não humana com identidade funcional definida e agência operacional dentro de um ecossistema de IA. Uma NHE™ não é classificada como inteligência artificial isoladamente, mas como entidade autônoma ou semiautônoma que opera por meio de camadas coordenadas de inteligência, interagindo com sistemas, usuários e ambientes mantendo identidade não antropomórfica.
 
-## Privacy safeguards
+## Salvaguardas de Privacidade
 
-MAIC™, HIM™, NHE™, and the this project platform or system are designed and operated in alignment with role-based access control (RBAC) principles and ISO/IEC 42001 requirements. Data handling follows strict governance policies, including controlled access to system components, segregation of duties, and short retention periods for sensitive information. This project enforces an explicit policy of not using personal or customer data for training or improving MAIC™, HIM™, or NHE™. All sensitive data processed within this project ecosystem is protected using industry-standard encryption and cryptographic hashing, ensuring confidentiality, integrity, and accountability across the entire intelligence lifecycle.
+MAIC™, HIM™, NHE™ e a plataforma ou sistema deste projeto são desenhados e operados em alinhamento com os princípios de controle de acesso baseado em papéis (RBAC) e com os requisitos da ISO/IEC 42001. O tratamento de dados segue políticas estritas de governança, incluindo acesso controlado aos componentes do sistema, segregação de funções e períodos curtos de retenção para informações sensíveis. Este projeto impõe a política explícita de não usar dados pessoais ou de clientes para treinar ou aperfeiçoar MAIC™, HIM™ ou NHE™. Todos os dados sensíveis processados dentro do ecossistema deste projeto são protegidos por criptografia e hashing criptográfico padrão de mercado, garantindo confidencialidade, integridade e responsabilização ao longo de todo o ciclo de vida da inteligência.

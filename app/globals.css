@@ -55,18 +55,6 @@
   --color-card-content: var(--card-content);
 }
 
-/* ──────────────────────────────────────────────────────────────────
-   Performance: cards do catálogo usam content-visibility pra que o
-   browser pule render de cards off-screen (180+ produtos no scroll
-   infinito). `contain` isola repaints. `contain-intrinsic-size`
-   reserva espaço estimado pra evitar layout shift.
-   ────────────────────────────────────────────────────────────────── */
-.product-card-shell {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 28rem;
-  contain: layout style paint;
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
